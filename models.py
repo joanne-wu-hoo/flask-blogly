@@ -1,3 +1,5 @@
+"""Models for Blogly."""
+
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
@@ -10,13 +12,16 @@ def connect_db(app):
     db.init_app(app)
 
 
-"""Models for Blogly."""
+
 
 
 class User(db.Model):
     """ User """
 
     __tablename__ = "users"
+
+    def __repr__(self):
+        return f'<{self.id} {self.first_name} {self.last_name}>'
 
     id = db.Column(db.Integer,
                    primary_key=True,
@@ -28,10 +33,6 @@ class User(db.Model):
     image_url = db.Column(db.Text,
                           default="https://bit.ly/2RD7Vny",
                           nullable=False)
-
-    @classmethod
-    def get_number_of_users(cls):
-        return len(cls.query.all())
 
 
 

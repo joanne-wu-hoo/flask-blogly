@@ -42,6 +42,8 @@ def process_new_user():
     last_name = request.form.get("last_name")
     image_url = request.form.get("image_url")
 
+    # If user input is blank, set to None
+    # so database will go to default URL
     if image_url == "":
         image_url = None
 
@@ -77,9 +79,11 @@ def process_user_edit_form(user_id):
     """ Process edit form for user"""
 
     # get values from form
-    first_name = request.form.get("first_name")
-    last_name = request.form.get("last_name")
-    image_url = request.form.get("image_url")
+    first_name = request.form["first_name"]
+    last_name = request.form["last_name"]
+    image_url = request.form["image_url"]
+
+    # NOTE: use [] instead of get to raise an explicit error
 
     user = User.query.get(user_id)
 

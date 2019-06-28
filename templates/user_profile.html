@@ -14,6 +14,13 @@
             <form class="d-inline" action="/users/{{ user.id }}/delete" method="POST">
                 <button class="btn btn-danger">Delete</button>
             </form>
+            <h2 class="mt-5">Posts</h2>
+            <ul>
+                {% for post in user.posts %}
+                    <li><a href='/posts/{{ post.id }}'>{{ post.title }}</a></li>
+                {% endfor %}
+            </ul>
+            <a class="btn btn-primary" href='/users/{{ user.id }}/posts/new'>Add Post</a>
         </div>
     </div>
 </div>

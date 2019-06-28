@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %} Add New Post {% endblock %}
+
+{% block content %} 
+<div class="container mx-auto">
+    <div class="row">
+        <div class="col-12">
+            <h1>Add Post for {{ user.first_name }} {{ user.last_name }}</h1>
+            <form action="/users/{{ user.id }}/posts" method="POST">
+                <div class="form-group row">
+                    <label for="title" class="col-sm-2 col-form-label">Title</label>
+                    <div class="col-sm-10">
+                        <input id="title" name="title"> 
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="content" class="col-sm-2 col-form-label">Content</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="content" rows="5" id="content"></textarea>
+                    </div>
+                </div>
+                {% for tag in tags %}
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="tags" id="{{ tag.name }}" value="{{ tag.id }}">
+                    <label class="form-check-label" for="{{ tag.name }}">
+                        {{ tag.name }}
+                    </label>
+                </div>
+                {% endfor %}
+                <div class='float-right'>
+                    <a href="/users/{{ user.id }}"class='btn btn-info'>Cancel</a>
+                    <button class='btn btn-success'>Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

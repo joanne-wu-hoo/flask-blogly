@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %} New Tag {% endblock %}
+
+{% block content %} 
+<div class="container mx-auto">
+    <h1>Create a tag</h1>
+    <form action="/tags/new" method="POST">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input id="name" name="name" placeholder="Enter a name for the tag"> 
+        </div>
+        <a class="btn btn-outline-info" href="/tags">Cancel</a>
+        <button class='btn btn-success'>Add</button>
+    </form>
+</div>
+
+{% endblock %}

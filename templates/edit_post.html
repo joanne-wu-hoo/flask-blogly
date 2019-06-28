@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %} Edit Post {% endblock %}
+
+{% block content %} 
+<div class="container mx-auto">
+    <div class="row">
+        <div class="col-12">
+            <h1>Edit Post</h1>
+            <form method="POST">
+                <div class="form-group row">
+                    <label for="title" class="col-sm-2 col-form-label">Title</label>
+                    <div class="col-sm-10">
+                        <input id="title" name="title" value="{{ post.title }}"> 
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="content" class="col-sm-2 col-form-label">Content</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="content" rows="5" id="content">{{ post.content }}</textarea>
+                    </div>
+                </div>
+                {% for tag in tags %}
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="tags" id="{{ tag.name }}" value="{{ tag.id }}" 
+                        {% if tag in tags_for_post %} checked {% endif %}>
+                    <label class="form-check-label" for="{{ tag.name }}">
+                        {{ tag.name }}
+                    </label>
+                </div>
+                {% endfor %}
+                <div class='float-right'>
+                    <a href="/posts/{{ post.id }}" class='btn btn-info'>Cancel</a>
+                    <button class='btn btn-success'>Edit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
